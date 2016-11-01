@@ -34,6 +34,6 @@ download_dependency $PACKAGE "${PACKAGE_STRING}.tar.gz" $THIS_DIR
 if needs_build_package ; then
   header $PACKAGE $PACKAGE_VERSION
   wrap ./gradlew
-  wrap cp -r "$(pwd)/." "${LOCAL_INSTALL}"
+  wrap cp -rf "$(pwd)/." "${LOCAL_INSTALL}"
   footer $PACKAGE $PACKAGE_VERSION
 fi
