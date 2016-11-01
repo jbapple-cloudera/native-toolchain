@@ -13,6 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# DITA Open Toolkit is a tool for rendering XML documentation to readable formats.
+
+# To build the tarball for use with this build script:
+#
+# git clone --depth=1 -b 2.3.3 https://github.com/dita-ot/dita-ot.git
+# cd dita-ot
+# git submodule update --init --recursive
+# cd ..
+# tar -czf dita-ot-2.3.3.tar.gz dita-ot
+
 set -euo pipefail
 
 source $SOURCE_DIR/functions.sh
@@ -24,7 +34,6 @@ download_dependency $PACKAGE "${PACKAGE_STRING}.tar.gz" $THIS_DIR
 if needs_build_package ; then
   header $PACKAGE $PACKAGE_VERSION
   wrap ./gradlew
-  rm -rf $LOCAL_INSTALL
-  ln -s build $LOCAL_INSTALL
+  wrap cp -r "$(pwd)/." "${LOCAL_INSTALL}"
   footer $PACKAGE $PACKAGE_VERSION
 fi
